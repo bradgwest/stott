@@ -1,3 +1,4 @@
-STOTT
+# STOTT
 
-A portal to the state of your team and those that comprise it.
+A portal to the status of your team and the individuals comprise it.
+
