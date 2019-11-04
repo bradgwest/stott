@@ -1,5 +1,7 @@
 package stott
 
+// TODO Blocker and Tasks should embed a more abstract type and interface
+
 // UserID represents a user identifier
 type UserID int
 
@@ -41,19 +43,36 @@ type Blocker struct {
 }
 
 // TaskID represents a task identifier
+type TaskID int
 
 // Task represents a link which is a Task
+type Task struct {
+	ID   TaskID `json:"task_id"`
+	Link LinkID `json:"link_id"`
+}
 
-// type UserService represents a service for managing users.
+// UserService represents a service for managing users.
 type UserService interface {
 	Authenticate(token string) (*User, error)
 }
 
-// StatusService represents a servicce for managing Statuses
+// StatusService represents a service for managing Statuses
 type StatusService interface {
 	Status(id StatusID) (*Status, error)
 	CreateStatus(status *Status) error
-	UpdateStatus(text string) error
+	UpdateStatus(is StatusID, text string) error
 }
 
-// Extra
+// BlockerService represents a service for managing Blockers
+type BlockerService interface {
+	Blocker(id BlockerID) (*Blocker, error)
+	CreateBlocker(blocker *Blocker) error
+	UpdateBlocker(id BlockerID, blocker LinkID) error
+}
+
+// TaskService represents a service for managing Tasks
+type TaskService interface {
+	Task(id TaskID) (*Task, error)
+	CreateTask(task *Task) error
+	UpdateTask(id TaskID, text LinkID) error
+}
