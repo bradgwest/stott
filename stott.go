@@ -51,9 +51,21 @@ type Task struct {
 	Link LinkID `json:"link_id"`
 }
 
-// UserService represents a service for managing users.
-type UserService interface {
+// Authenticator represents a service for managing users.
+type Authenticator interface {
 	Authenticate(token string) (*User, error)
+}
+
+// Client creates a connection to the services
+type Client interface {
+	Connect() Session
+}
+
+// Session represents authenticatable connection to the services.
+type Session interface {
+	SetAuthToken(token string)
+	StatusService() StatusService
+	// TODO This should have Blocker and Task Services as well, once those APIs are hashed out
 }
 
 // StatusService represents a service for managing Statuses

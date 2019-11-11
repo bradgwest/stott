@@ -1,0 +1,7 @@
+package internal;
+
+message Status {
+    optional int64 ID = 1;
+    optional int64 UserID = 2;
+    optional string Text = 4;
+}
