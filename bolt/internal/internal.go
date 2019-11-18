@@ -5,7 +5,7 @@ import (
 	"github.com/gogo/protobuf/proto"
 )
 
-//go:generate protoc --gogo_out=. internal.proto
+//go:generate protoc --go_out=. internal.proto
 
 // MarshalStatus encodes a status to binary format.
 func MarshalStatus(d *stott.Status) ([]byte, error) {
@@ -23,7 +23,7 @@ func UnmarshalStatus(data []byte, d *stott.Status) error {
 		return err
 	}
 
-	d.ID = stott.Status(pb.GetID())
+	d.ID = stott.StatusID(pb.GetID())
 	d.UserID = stott.UserID(pb.GetUserID())
 	d.Text = pb.GetText()
 
